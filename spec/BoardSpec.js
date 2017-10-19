@@ -9,12 +9,8 @@ describe('Board', function() {
     // The Board() constructor will accept a matrix and build that into a (Backbone) Board object (as defined in Board.js)
     var board = new Board(matrix);
     _.map('row col rooks majorDiagonal minorDiagonal queens'.split(' '), function(conflictType) {
-      console.log('conflict type', conflictType);
-      console.log('invoking capitalize ', capitalize(conflictType));
       var conflictDetected = board['hasAny' + capitalize(conflictType) + 'Conflicts']();
-      console.log('board ', conflictDetected );
       var conflictExpected = _(expectedConflicts).contains(conflictType);
-      console.log('EC ', conflictExpected);
       var message = conflictExpected ? 'should' : 'should not';
 
       it(message + ' find a ' + conflictType + ' conflict', function() {

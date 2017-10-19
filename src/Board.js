@@ -160,7 +160,6 @@
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
   
-      console.log('START OF TESTTTT');
       //variable conflicts
       var conflicts = 0;
       //varaiable table for all arrays
@@ -168,8 +167,7 @@
       //variable for column index
       var column = majorDiagonalColumnIndexAtFirstRow;
       //iterate through the rows
-      for (var i = 0; i < table.length; i++) {
-        console.log( 'value: ', table[i][column], 'i ', i, 'columnIndex (MDIC) ', majorDiagonalColumnIndexAtFirstRow, 'tableLength', table.length, 'conflicts: ', conflicts); //if starting at the MDCIF equal to one
+      for (var i = 0; i < table.length; i++) { 
         if (table[i][column] === 1) {
           //add to conflict
           conflicts++;
@@ -180,10 +178,8 @@
       //if conflict is greater than or equal to  2
       if (conflicts >= 2) {
         //return true
-        console.log('TRUE');
         return true;
       }
-      console.log('FALSE');
       //return false
       return false; // fixme
 
@@ -211,7 +207,6 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      console.log('START OF TESTTTT');
       //variable conflicts
       var conflicts = 0;
       //varaiable table for all arrays
@@ -231,10 +226,8 @@
       //if conflict is greater than or equal to  2
       if (conflicts >= 2) {
         //return true
-        console.log('TRUE');
         return true;
       }
-      console.log('FALSE');
       //return false
       return false; // fixme
     },
