@@ -62,8 +62,57 @@ window.findNQueensSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
-  var solutionCount = undefined; //fixme
-
+  var results = [];
+  if (n === 0) {
+    results.push(1);
+  } 
+  //iterate through n number
+  for (var i = 0; i < n; i++) {
+    //create a new board every iteration
+    var newBoard = new Board({n: n});
+    console.log('board ', n);
+      //create recursive funciton takes parameters of current Board and row number
+    var recursiveQueens = function(board, rowNum) {
+      //base case 
+      if (rowNum === 0) {
+        //check collumn conficts 
+        if (!board.hasAnyRooksConflicts() && !board.hasAnyMajorDiagonalConflicts() && !board.hasAnyMinorDiagonalConflicts()) {
+        //if this is false then push the board into results array
+          results.push(board);
+        }
+      } else {
+        //for loop iterates based on "n"
+        for (var b = 0; b < n; b++) {
+          //var for setRow
+          var setRow = [];
+          // for loop iterates to create new array 
+          for (var k = 0; k < n; k++) {
+            //if i === j then push '1' into new array
+            if (b === k) {
+              setRow.push(1);
+            //else push '0';
+            } else {
+              setRow.push(0);
+            }
+          }
+          //set the board based on row # === n
+          board.set(rowNum - 1, setRow);
+          //call recursive function --- decrement the row number passing in the current board that we changed
+          recursiveQueens(board, rowNum - 1);
+        }
+      }
+    };
+    recursiveQueens(newBoard, n);
+  }     
+  var solutionCount = results.length;
+  console.log('results', results);
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
 };
+
+
+
+
+
+
+
