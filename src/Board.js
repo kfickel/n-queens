@@ -220,7 +220,7 @@
       var column = minorDiagonalColumnIndexAtFirstRow;
       //iterate through the rows
       for (var i = 0; i < table.length; i++) {
-        console.log( 'value: ', table[i][column], 'i ', i, 'columnIndex (MDIC) ', minorDiagonalColumnIndexAtFirstRow, 'tableLength', table.length, 'conflicts: ', conflicts); //if starting at the MDCIF equal to one
+       // console.log( 'value: ', table[i][column], 'i ', i, 'columnIndex (MDIC) ', minorDiagonalColumnIndexAtFirstRow, 'tableLength', table.length, 'conflicts: ', conflicts); //if starting at the MDCIF equal to one
         if (table[i][column] === 1) {
           //add to conflict
           conflicts++;
@@ -244,7 +244,7 @@
       var conflicts = false;
       var table = this.rows();
       
-      for (var i = -(table.length); i < table.length; i++) {
+      for (var i = (table.length * 2); i >= 0; i--) {
         conflicts = this.hasMinorDiagonalConflictAt(i);
         if (conflicts) {
           return true;
